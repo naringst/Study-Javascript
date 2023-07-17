@@ -107,8 +107,32 @@ console.log(yuJin2.name); //여긴 있음
  * Configurable
  */
 
+console.log(Object.getOwnPropertyDescriptor(yuJin2, "height"));
+
+//configurable이 false일때 enumerable을 false로 바꿔보기 : error
+// Object.defineProperty(yuJin2, "height", {
+//   enumerable: false,
+// });
+
+//writable이 true이면 이를 바꾸는 것과 값 바꾸기는 가능
+
 Object.defineProperty(yuJin2, "height", {
   configurable: false,
+  writable: true,
 });
 
+Object.defineProperty(yuJin2, "height", {
+  value: 172,
+});
 console.log(Object.getOwnPropertyDescriptor(yuJin2, "height"));
+
+Object.defineProperty(yuJin2, "height", {
+  writable: false,
+});
+
+Object.defineProperty(yuJin2, "height", {
+  writable: true,
+}); // 이거 안됨
+
+//confi : false면 프로퍼티에트리뷰트 변경 불가
+//얘외 writable true면 값만 바꿀 수 있음, 그리고 true -> false도 가능
